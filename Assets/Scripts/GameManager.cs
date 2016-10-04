@@ -72,7 +72,13 @@ namespace GameProgramming2D
         private void InitGameStateManager()
         {
             StateManager = new GameStateManager(new MenuState());
-            StateManager.AddState(new GameState()); 
+            StateManager.AddState(new GameState());
+            StateManager.AddState(new GameOverState());
+        }
+
+        public void GameOver()
+        {
+            StateManager.PerformTransition(TransitionType.GameToGameOver);
         }
 
         internal void Reload()

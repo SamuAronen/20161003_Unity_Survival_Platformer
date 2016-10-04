@@ -66,7 +66,7 @@ namespace GameProgramming2D.State
             return state != null && _states.Remove(state);
         }
 
-        public void PerfomrmTransition(TransitionType transition)
+        public void PerformTransition(TransitionType transition)
         {
             if (transition == TransitionType.Error)
             {

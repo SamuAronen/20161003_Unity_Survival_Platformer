@@ -7,7 +7,7 @@ namespace GameProgramming2D.GUI
     {
         public void OnStartGamePressed()
         {
-            GameManager.Instance.StateManager.PerfomrmTransition(State.TransitionType.MainMenuToGame);
+            GameManager.Instance.StateManager.PerformTransition(State.TransitionType.MainMenuToGame);
         }
         
 

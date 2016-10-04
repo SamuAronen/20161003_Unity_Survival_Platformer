@@ -25,8 +25,9 @@ public class Remover : MonoBehaviour
 			Instantiate(splash, col.transform.position, transform.rotation);
 			// ... destroy the player.
 			Destroy (col.gameObject);
-			// ... reload the level.
-			StartCoroutine("ReloadGame");
+			// ... Go to game over screen
+			StartCoroutine("GoToGameOverScreen");
+
 		}
 		else
 		{
@@ -38,11 +39,11 @@ public class Remover : MonoBehaviour
 		}
 	}
 
-	IEnumerator ReloadGame()
+	IEnumerator GoToGameOverScreen()
 	{			
 		// ... pause briefly
 		yield return new WaitForSeconds(2);
-        // ... and then reload the level.
-        GameManager.Instance.Reload();
-	}
+        // ... and then go to game over screen.
+        GameManager.Instance.GameOver();
+    }
 }
