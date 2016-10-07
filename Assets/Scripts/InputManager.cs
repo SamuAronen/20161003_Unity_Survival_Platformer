@@ -24,6 +24,11 @@ namespace GameProgramming2D
             if (GameManager.Instance.Player != null)
             {
 
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    GameManager.Instance.Save();
+                }
+
                 if (Input.GetButtonDown("Jump"))
                 {
                     GameManager.Instance.Player.Jump = true;

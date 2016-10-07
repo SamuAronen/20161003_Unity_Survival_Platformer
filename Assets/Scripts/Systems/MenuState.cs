@@ -11,6 +11,7 @@ namespace GameProgramming2D.State
 
         public override void StateActivated()
         {
+            GameManager.Instance.SceneLoaded += HandleSceneLoaded;
             SceneManager.LoadScene(0);
         }
     }
