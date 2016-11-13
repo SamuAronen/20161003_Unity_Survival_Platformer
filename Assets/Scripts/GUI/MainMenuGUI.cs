@@ -4,7 +4,8 @@ using System.Collections;
 
 namespace GameProgramming2D.GUI
 {
-    public class MainMenuGUI : MonoBehaviour
+    public class MainMenuGUI : SceneGUI
+
     {
         [SerializeField] private Button _loadButton;
 

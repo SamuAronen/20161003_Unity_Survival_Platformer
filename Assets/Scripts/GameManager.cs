@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using GameProgramming2D.State;
-using System.Collections;
 using System.Collections.Generic;
-using System;
+using GameProgramming2D.GUI;
 
 namespace GameProgramming2D
 {
@@ -30,6 +29,8 @@ namespace GameProgramming2D
 
         [SerializeField] private Enemy _enemyWithShip;
         [SerializeField] private Enemy _enemyWithoutShip;
+        [SerializeField] private GUIManager _guiManagerPrefab;
+
         private Pauser _pauser;
         private InputManager _inputManager;
         private PlayerControl _playerControl;
@@ -54,6 +55,8 @@ namespace GameProgramming2D
         {
             get; private set;
         }
+
+        public GUIManager GUIManager { get; private set; }
 
         private void Awake()
         {
@@ -83,6 +86,16 @@ namespace GameProgramming2D
             _inputManager = gameObject.GetOrAddComponent<InputManager>();
             _playerControl = FindObjectOfType<PlayerControl>();
             InitGameStateManager();
+            InitGUIManager();
+        }
+
+        private void InitGUIManager()
+        {
+            // Creates a new GUIManager instance from _guiManagerPrefab
+            GUIManager = Instantiate(_guiManagerPrefab);
+            // Reparent it to GameManager's child
+            GUIManager.transform.SetParent(transform);
+            GUIManager.Init();
         }
 
         private void InitGameStateManager()
@@ -201,6 +214,16 @@ namespace GameProgramming2D
             {
                 return _enemyWithShip;
             }
+        }
+
+        public void QuitGame()
+        {
+            Dialog dialog = GUIManager.CreateDialog();
+            dialog.SetHeadLine("Quit Game");
+            dialog.SetText("Are you sure you want to quit game?");
+            dialog.SetOnOkClicked(() => Application.Quit()); // Anonymous method
+            dialog.SetOnCancelClicked();
+            dialog.Show();
         }
     }
 }
